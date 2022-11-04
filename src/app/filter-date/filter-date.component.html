@@ -1,0 +1,28 @@
+<!-- <div class="input-group">
+    <i class="bi bi-calendar3" style="font-size: 2rem;" (click)="d.toggle()"></i>
+
+    <button 
+        class="btn btn-outline-secondary p-0" 
+        (click)="d.toggle()" 
+        type="button"
+    >
+        
+    </button>
+
+    <input class="form-control ms-2" placeholder="yyyy-mm-dd" type="text" ngbDatepicker #d="ngbDatepicker" />
+</div> -->
+
+<div class="input-group mb-3">
+    <span class="input-group-text" id="calenderIcon" (click)="d.toggle()">
+        <i class="bi bi-calendar3"></i>
+    </span>
+    
+    <input 
+        type="text" 
+        class="form-control" 
+        placeholder="From Date - To Date" 
+        aria-label="filterDate"
+        aria-describedby="calenderIcon"
+        ngbDatepicker #d="ngbDatepicker"
+    >
+</div>

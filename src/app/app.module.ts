@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CompanyTrendComponent } from './company-trend/company-trend.component';
+import { FilterDateComponent } from './filter-date/filter-date.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    CompanyTrendComponent
+    CompanyTrendComponent,
+    FilterDateComponent
   ],
   imports: [
     BrowserModule,
