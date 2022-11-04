@@ -6,6 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./price.component.scss']
 })
 export class PriceComponent implements OnInit {
+  options = [
+    {
+      'key': 'closing',
+      'text': 'Closing Price',
+    },
+    {
+      'key': 'closing_adj',
+      'text': 'Adj. Closing Price'
+    },
+  ];
 
   constructor() { }
 
