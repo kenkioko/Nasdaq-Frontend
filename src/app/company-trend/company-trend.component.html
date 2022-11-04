@@ -1,7 +1,15 @@
-<div class="d-flex justify-content-between">
-    <h2 class="text-uppercase">{{ company.name }}</h2>
-    
-    <div class="'ms-auto">
-        <app-filter-date></app-filter-date>
+<div>
+    <div class="d-flex justify-content-between">
+        <h2 class="text-uppercase">{{ company.name }}</h2>
+        
+        <div class="'ms-auto">
+            <app-filter-date></app-filter-date>
+        </div>
+    </div>
+
+    <div>
+        <app-filter-price></app-filter-price>
+        
+        <app-graph-trend></app-graph-trend>
     </div>
 </div>
