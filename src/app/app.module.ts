@@ -5,19 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { CompanyTrendComponent } from './company-trend/company-trend.component';
-import { FilterDateComponent } from './filter-date/filter-date.component';
-import { FilterPriceComponent } from './filter-price/filter-price.component';
-import { GraphTrendComponent } from './graph-trend/graph-trend.component';
+import { GraphComponent } from './graph/graph.component';
+import { DateComponent } from './filter/date/date.component';
+import { PriceComponent } from './filter/price/price.component';
+import { TrendComponent } from './trend/trend.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    CompanyTrendComponent,
-    FilterDateComponent,
-    FilterPriceComponent,
-    GraphTrendComponent
+    GraphComponent,
+    DateComponent,
+    PriceComponent,
+    TrendComponent
   ],
   imports: [
     BrowserModule,

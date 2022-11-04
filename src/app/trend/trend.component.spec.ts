@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterDateComponent } from './filter-date.component';
+import { TrendComponent } from './trend.component';
 
-describe('FilterDateComponent', () => {
-  let component: FilterDateComponent;
-  let fixture: ComponentFixture<FilterDateComponent>;
+describe('TrendComponent', () => {
+  let component: TrendComponent;
+  let fixture: ComponentFixture<TrendComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterDateComponent ]
+      declarations: [ TrendComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FilterDateComponent);
+    fixture = TestBed.createComponent(TrendComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

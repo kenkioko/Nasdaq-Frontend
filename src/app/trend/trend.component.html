@@ -3,13 +3,16 @@
         <h2 class="text-uppercase">{{ company.name }}</h2>
         
         <div class="'ms-auto">
-            <app-filter-date></app-filter-date>
+            <!-- filter by date range -->
+            <app-date></app-date>
         </div>
     </div>
 
     <div>
-        <app-filter-price></app-filter-price>
+        <!-- toogle closing price -->
+        <app-price></app-price>
         
-        <app-graph-trend></app-graph-trend>
+        <!-- company graph trend -->
+        <app-graph></app-graph>
     </div>
 </div>

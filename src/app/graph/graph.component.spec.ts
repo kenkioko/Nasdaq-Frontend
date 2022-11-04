@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompanyTrendComponent } from './company-trend.component';
+import { GraphComponent } from './graph.component';
 
-describe('CompanyTrendComponent', () => {
-  let component: CompanyTrendComponent;
-  let fixture: ComponentFixture<CompanyTrendComponent>;
+describe('GraphComponent', () => {
+  let component: GraphComponent;
+  let fixture: ComponentFixture<GraphComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompanyTrendComponent ]
+      declarations: [ GraphComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CompanyTrendComponent);
+    fixture = TestBed.createComponent(GraphComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
