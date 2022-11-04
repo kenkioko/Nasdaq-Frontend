@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./company-trend.component.scss']
 })
 export class CompanyTrendComponent implements OnInit {
+  company = {
+    name: "svstr",
+  };
 
   constructor() { }
 
