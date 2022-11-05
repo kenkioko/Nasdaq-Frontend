@@ -2,8 +2,28 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// import * as dotenv from 'dotenv';
+
+// const result = dotenv.config()
+// if (result.error) {
+//     throw result.error
+// }
+
+// console.error(result.parsed);
+
 export const environment = {
-  production: false
+  production: false,
+  
+  // api variables
+  // api: {
+  //   key: process.env['API_KEY'],
+  //   base_url: process.env['API_BASE_URL'],
+  // }
+
+  api: {
+    key: "6soAgnD15ThwLQ3SomsZ",
+    base_url: "https://data.nasdaq.com/api/v3/datasets/",
+  }
 };
 
 /*
