@@ -5,7 +5,15 @@
     <input type="text" class="form-control" id="searchInput" placeholder="Type here to search">
 </div>
 
-<div>
-    company list
-    {{ listing | json }}
-</div>
+<!-- company listing -->
+<ul class="list-group list-group-flush" *ngFor="let index of listing">
+    <!-- <li class="list-group-item active" aria-current="true">An active item</li> -->
+    <li 
+        class="text-capitalize list-group-item"
+        (click)="onClick($event)"
+        (mouseenter)="onHover($event, true)"
+        (mouseleave)="onHover($event, false)"
+    >
+        {{ index.name | titlecase }}
+    </li>
+</ul>
