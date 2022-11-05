@@ -4,6 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FilterService {
+  selected_index: any | undefined;
 
   constructor() { }
+
+  selectIndex(index: any) {
+    this.selected_index = index;
+  }
+
+  getIndex() {
+    return this.selected_index;
+  }
 }

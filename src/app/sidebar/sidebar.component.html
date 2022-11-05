@@ -6,14 +6,20 @@
 </div>
 
 <!-- company listing -->
-<ul class="list-group list-group-flush" *ngFor="let index of listing">
-    <!-- <li class="list-group-item active" aria-current="true">An active item</li> -->
-    <li 
-        class="text-capitalize list-group-item"
-        (click)="onClick($event)"
-        (mouseenter)="onHover($event, true)"
-        (mouseleave)="onHover($event, false)"
-    >
-        {{ index.name | titlecase }}
-    </li>
+<ul class="list-group list-group-flush">
+    <span *ngFor="let index of listing">
+        <li 
+            class="text-capitalize list-group-item"
+            (mouseenter)="onHover($event, index, true)"
+            (mouseleave)="onHover($event, index, false)"
+        >
+            <a 
+                class="text-decoration-none text-dark" 
+                [routerLink]="['/', index.code]"
+                (click)="onClick($event, index)"
+            >
+                {{ index.name | titlecase }}
+            </a>    
+        </li>
+    </span>
 </ul>

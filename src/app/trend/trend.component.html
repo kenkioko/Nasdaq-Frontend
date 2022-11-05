@@ -1,6 +1,16 @@
 <div>
     <div class="d-flex justify-content-between">
-        <h2 class="text-uppercase">{{ company.name }}</h2>
+        <div *ngIf="company">
+            <h2 class="text-uppercase">
+                {{ company.name | uppercase }}
+            </h2>
+        </div>
+
+        <div *ngIf="company == undefined">
+            <h2 class="text-uppercase">
+                Select a trend from the sidebar
+            </h2>
+        </div>
         
         <div class="'ms-auto">
             <!-- filter by date range -->
