@@ -8,7 +8,7 @@ export class FilterService {
 
   constructor() { }
 
-  selectIndex(index: any) {
+  setIndex(index: any) {
     this.selected_index = index;
   }
 

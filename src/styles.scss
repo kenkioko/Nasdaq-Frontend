@@ -1,7 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Importing Bootstrap SCSS file. */
+// Required
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// Typography
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+
+// Custom Variables
+$primary: #51459E;
+$secondary: #dfe3f8;
+$light: #FDFDFD;
+$dark: #020202;
+
+// Body
+$font-family-base: 'Poppins';
+$body-bg: $light;
+$link-color: $dark;
+
+// Headings
+$display-font-sizes: (1: 3rem,
+    2: 2.5rem,
+    3: 2rem,
+    4: 1.5rem,
+    5: 1.25rem,
+    6: 1rem);
+
+$display-font-family: 'Poppins';
+$display-font-style: normal;
+$display-font-weight: bold;
+$display-line-height: $headings-line-height;
+
+// Modify the map
+$theme-colors: ("primary": $primary,
+    "secondary": $secondary,
+    "light": $light,
+    "dark": $dark);
+
+/* importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
-/* Importing Bootstrap Icons SCSS file. */
+/* importing Bootstrap Icons SCSS file. */
 @import 'bootstrap-icons/font/bootstrap-icons';

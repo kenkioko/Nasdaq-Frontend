@@ -4,7 +4,7 @@ import { TrendComponent } from './trend/trend.component';
 
 const routes: Routes = [
   {
-    path: ':trendCode',
+    path: ':trend_code',
     component: TrendComponent
   }
 ];

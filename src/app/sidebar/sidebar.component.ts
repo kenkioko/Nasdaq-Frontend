@@ -22,12 +22,12 @@ export class SidebarComponent implements OnInit {
 
   getListing() {
     // company listings
-    let provider = new DataProvider()
-    provider.companyList((results: any) => {
-      this.listing = results.hasOwnProperty('data')
-        ? results['data']
-        : results;
-    });
+    let provider = new DataProvider();
+    // this.listing = provider.companyList();
+    provider.companyList()
+      .then(result => {
+        this.listing = result;
+      });
   }
 
   onHover(event: Event, index: any, toggle: boolean) {
@@ -41,33 +41,27 @@ export class SidebarComponent implements OnInit {
     }
 
     if (event.target instanceof Element) {
-      this.activate(event.target, toggle);     
+      this.activate(event.target, toggle);
     }
   }
 
   onClick(event: Event, index: Object) {
-    console.log('click', event);
-    
     if (this.selected_target instanceof Element) {
       // remove active target
       this.activate(this.selected_target.parentElement, false);
-      console.log('removed', this.selected_target);
     }
 
     if (event.target instanceof Element) {
       // replace active target
       this.activate(event.target.parentElement, true);
 
-      console.log('added', event.target);
-      
-
       // set the selected trend
       this.selected_target = event.target;
-      this.filterService.selectIndex(index);
+      this.filterService.setIndex(index);
     }
   }
 
-  activate(target: EventTarget|HTMLElement|null , toggle: boolean) {
+  activate(target: EventTarget | HTMLElement | null, toggle: boolean) {
     if (target instanceof Element) {
       const elem = $(target);
 
