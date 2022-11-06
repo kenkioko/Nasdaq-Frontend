@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { DataProvider } from '../utility/data-provider';
-import { FilterService } from '../service/filter.service';
+import { DataService } from '../service/data.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
   listing: any;
   selected_target: any;
 
-  constructor(private filterService: FilterService) {
+  constructor(private dataService: DataService) {
     // app title
     let app = new AppComponent;
     this.title = app.title;
@@ -32,7 +32,7 @@ export class SidebarComponent implements OnInit {
 
   onHover(event: Event, index: any, toggle: boolean) {
     // if selected prevent
-    const selected = this.filterService.getIndex();
+    const selected = this.dataService.getIndex();
     const isSelected = (selected && index.code === selected.code);
 
     if (isSelected && !toggle) {
@@ -57,7 +57,7 @@ export class SidebarComponent implements OnInit {
 
       // set the selected trend
       this.selected_target = event.target;
-      this.filterService.setIndex(index);
+      this.dataService.setIndex(index);
     }
   }
 

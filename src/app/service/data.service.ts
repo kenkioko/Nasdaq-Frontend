@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class FilterService {
+export class DataService {
   selected_index: any | undefined;
 
   constructor() { }

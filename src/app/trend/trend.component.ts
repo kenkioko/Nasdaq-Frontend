@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FilterService } from '../service/filter.service';
+import { DataService } from '../service/data.service';
 import { DataProvider } from '../utility/data-provider';
 
 @Component({
@@ -16,7 +16,7 @@ export class TrendComponent implements OnInit, DoCheck {
 
   constructor(
     private route: ActivatedRoute,
-    private filterService: FilterService,
+    private dataService: DataService,
   ) {
     this.company = null;
     this.graph_trend = null;
@@ -34,13 +34,13 @@ export class TrendComponent implements OnInit, DoCheck {
     // Find the graph trend that correspond with the code provided in route.
     if (trendCode) {
       let company = this.dataProvider.companyList(trendCode);
-      this.filterService.setIndex(company);
+      this.dataService.setIndex(company);
 
       console.log('get trend company', company);
     }
     
     // set the selected company data
-    this.company = this.filterService.getIndex();
+    this.company = this.dataService.getIndex();
     if (this.company && this.company.hasOwnProperty('code')) {
       this.graph_trend = this.dataProvider.companyData(this.company.code);
     }
@@ -51,7 +51,7 @@ export class TrendComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    const current_index = this.filterService.getIndex();
+    const current_index = this.dataService.getIndex();
 
     const shouldUpdate = () => {
       let update = false;
