@@ -10,39 +10,36 @@ import { DataProvider } from '../utility/data-provider';
 })
 export class TrendComponent implements OnInit, DoCheck {
   private dataProvider: DataProvider;
-  
   company: any | undefined;
-  graph_trend: any | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
   ) {
     this.company = null;
-    this.graph_trend = null;
     this.dataProvider = new DataProvider;
   }
 
   getTrend() {
     // First get the trend code from the current route.
     const routeParams = this.route.snapshot.paramMap;
-    const trendCode = routeParams.get('trend_code');
-
-    console.log('get trend', routeParams, trendCode);
-    
+    const trendCode = routeParams.get('trend_code');    
 
     // Find the graph trend that correspond with the code provided in route.
     if (trendCode) {
-      let company = this.dataProvider.companyList(trendCode);
-      this.dataService.setIndex(company);
-
-      console.log('get trend company', company);
+      this.dataProvider.companyList(trendCode)
+        .then(result => {
+          this.dataService.setIndex(result);
+        });
     }
     
     // set the selected company data
     this.company = this.dataService.getIndex();
     if (this.company && this.company.hasOwnProperty('code')) {
-      this.graph_trend = this.dataProvider.companyData(this.company.code);
+      this.dataProvider.companyData(this.company.code)
+        .then(result => {
+          this.dataService.setIndexData(result);
+        });
     }
   }
 

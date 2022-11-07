@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   selected_index: any | undefined;
+  selected_index_data: any | undefined;
 
   constructor() { }
 
@@ -14,5 +15,13 @@ export class DataService {
 
   getIndex() {
     return this.selected_index;
+  }
+
+  setIndexData(data: any) {
+    this.selected_index_data = data;
+  }
+
+  getIndexData() {
+    return this.selected_index_data;
   }
 }

@@ -1,25 +1,31 @@
-<h2 class="text-capitalize">{{ title }}</h2>
+<div class="vh-100 min-vh-100 overflow-auto">
+    <div class="">
+        <h2 class="text-capitalize">{{ title }}</h2>
 
-<div class="mb-3">
-    <label for="searchInput" class="form-label visually-hidden">Search</label>
-    <input type="text" class="form-control" id="searchInput" placeholder="Type here to search">
+        <div class="mb-3">
+            <label for="searchInput" class="form-label visually-hidden">Search</label>
+            <input type="text" class="form-control" id="searchInput" placeholder="Type here to search">
+        </div>
+    </div>
+
+    <!-- company listing -->
+    <div class="">
+        <ul class="list-group list-group-flush ">
+            <span *ngFor="let index of listing">
+                <li 
+                    class="text-capitalize list-group-item"
+                    (mouseenter)="onHover($event, index, true)"
+                    (mouseleave)="onHover($event, index, false)"
+                >
+                    <a 
+                        class="text-decoration-none text-dark" 
+                        [routerLink]="['/', index.code]"
+                        (click)="onClick($event, index)"
+                    >
+                        {{ index.name | titlecase }}
+                    </a>    
+                </li>
+            </span>
+        </ul>
+    </div>
 </div>
-
-<!-- company listing -->
-<ul class="list-group list-group-flush">
-    <span *ngFor="let index of listing">
-        <li 
-            class="text-capitalize list-group-item"
-            (mouseenter)="onHover($event, index, true)"
-            (mouseleave)="onHover($event, index, false)"
-        >
-            <a 
-                class="text-decoration-none text-dark" 
-                [routerLink]="['/', index.code]"
-                (click)="onClick($event, index)"
-            >
-                {{ index.name | titlecase }}
-            </a>    
-        </li>
-    </span>
-</ul>

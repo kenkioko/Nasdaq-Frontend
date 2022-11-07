@@ -23,8 +23,7 @@ export class SidebarComponent implements OnInit {
   getListing() {
     // company listings
     let provider = new DataProvider();
-    // this.listing = provider.companyList();
-    provider.companyList()
+    provider.companyList(null, 50)
       .then(result => {
         this.listing = result;
       });
