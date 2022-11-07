@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { NgbDateStruct, NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+
+import { DataProvider } from 'src/app/utility/data-provider';
 
 @Component({
   selector: 'app-date',
@@ -8,16 +10,40 @@ import { NgbDateStruct, NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng
   styleUrls: ['./date.component.scss']
 })
 export class DateComponent implements OnInit {
-  model!: NgbDateStruct;
+  @Input() company!: any;
+  @Input() fromDate!: NgbDate | null;
+  @Input() toDate!: NgbDate | null;
 
   hoveredDate: NgbDate | null = null;
 
-  fromDate: NgbDate;
-  toDate: NgbDate | null = null;
+  constructor(public formatter: NgbDateParserFormatter) { }
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+  formatDate(date: NgbDate | null) {
+    // var date_f = Date.parse(this.formatter.format(date));
+    // console.log(date_f);
+
+    console.log(date, this.fromDate);
+    
+
+    var months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    // var d = date_f.getDate();
+    // var m = date_f.getMonth();
+    // var y = date_f.getFullYear();
+
+    // const date_s =  `${d} ${months[m]}, ${y}`;
+    // console.log(date_s, date_f);
+
+
+    return date;
+  }
+
+  private filterByDate() {
+
+    // 
   }
 
   onDateSelection(date: NgbDate) {

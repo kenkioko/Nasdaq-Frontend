@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, DoCheck, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 import Chart from 'chart.js/auto';
 
@@ -10,23 +10,19 @@ import { LooseObject } from '../utility/loose-object';
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
 })
-export class GraphComponent implements OnInit, AfterViewInit, DoCheck {
+export class GraphComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('canvas') canvas!: ElementRef;
   @Input() company!: any;
+  @Input() company_data!: any;
 
-  private graph_data: any | undefined;
   private graph: any | undefined;
-
   graph_div_id = 'trend-graph';
 
   constructor(private dataService: DataService) { }
 
   createGraph() {
     const ctx = this.canvas.nativeElement;
-
-    // if (this.graph_data) {
     const structured = this.structureData();
-    // }
 
     this.graph = new Chart(ctx, {
       type: 'line',
@@ -41,9 +37,9 @@ export class GraphComponent implements OnInit, AfterViewInit, DoCheck {
     var column_names: any[] = [];
     var data: any[] = [];
 
-    if (this.graph_data) {
-      column_names = this.graph_data.dataset.column_names;
-      data = this.graph_data.dataset.data;
+    if (this.company_data) {
+      column_names = this.company_data.dataset.column_names;
+      data = this.company_data.dataset.data;
     }
 
     var dataset_data: any = [];
@@ -73,11 +69,11 @@ export class GraphComponent implements OnInit, AfterViewInit, DoCheck {
 
     // create dataset for each column
     columns.forEach(column => {
-      const slug = column.toLowerCase(); 
+      const slug = column.toLowerCase();
       const r_color = () => {
         return Math.floor(Math.random() * 256);
       }
-      
+
       const dataset = {
         label: column,
         data: structured_data,
@@ -99,46 +95,20 @@ export class GraphComponent implements OnInit, AfterViewInit, DoCheck {
   }
 
   ngOnInit(): void {
-    this.graph_data = this.dataService.getIndexData();
   }
 
   ngAfterViewInit(): void {
     this.createGraph();
   }
 
-  ngDoCheck(): void {
-    const shouldUpdate = () => {
-      let update = false;
-
-      try {
-        const has_company = this.company && this.company.hasOwnProperty('code');
-        const has_data = this.graph_data && this.graph_data.hasOwnProperty('dataset');
-
-        if (has_company && has_data) {
-          update = (this.company.code !== this.graph_data.dataset.dataset_code);
-        }
-        else if (has_company && !has_data) {
-          update = true;
-        }
-      } catch (error) {
-        // ignore
-        console.error('Error:', error);
-        update = false;
-      }
-
-      return update;
-    }
-
-    if (shouldUpdate()) {
+  ngOnChanges(): void {
+    if (this.company_data) {
       // destroy existing chart first
       if (this.graph) {
         this.graph.destroy();
       }
 
-      this.graph_data = this.dataService.getIndexData();
       this.createGraph();
-
-      console.log('do check', this.company, this.graph_data);
     }
   }
 

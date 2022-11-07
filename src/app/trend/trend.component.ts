@@ -11,7 +11,9 @@ import { DataProvider } from '../utility/data-provider';
 })
 export class TrendComponent implements OnInit, DoCheck {
   private dataProvider: DataProvider;
+  
   company: any | undefined;
+  company_data: any | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,12 +38,41 @@ export class TrendComponent implements OnInit, DoCheck {
     
     // set the selected company data
     this.company = this.dataService.getIndex();
+    this.company_data = this.dataService.getIndexData();
+
     if (this.company && this.company.hasOwnProperty('code')) {
       this.dataProvider.companyData(this.company.code)
         .then(result => {
           this.dataService.setIndexData(result);
+          this.company_data = this.dataService.getIndexData();
         });
     }
+  }
+
+  getColumnNames() {
+    var columns: any[] = [];
+    if (this.company_data) {
+      // remove date column name
+      if (this.company_data.hasOwnProperty('dataset')) {
+        columns = this.company_data.dataset.column_names.slice(1);
+      }
+    }
+
+    return columns;
+  }
+
+  getDateRange() {
+    var range: any = { };
+
+    if (this.company_data) {
+      // start date
+      if (this.company_data.hasOwnProperty('dataset')) {
+        range['from'] = this.company_data.dataset.oldest_available_date;
+        range['to'] = this.company_data.dataset.newest_available_date;
+      }
+    }    
+
+    return range;
   }
 
   ngOnInit(): void {

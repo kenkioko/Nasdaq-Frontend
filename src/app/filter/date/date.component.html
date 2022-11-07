@@ -58,7 +58,13 @@
         <i class="bi bi-calendar3 fs-3"></i>
     </button>
 
-    <button type="button" class="btn btn-primary rounded px-5" (click)="datepicker.toggle()">
-        {{ formatter.format(fromDate) }} - {{ formatter.format(toDate) }}
+    <button 
+        type="button" 
+        class="btn btn-primary rounded px-5 fw-bold" 
+        (click)="datepicker.toggle()"
+    >
+        {{ formatDate(fromDate) }} - {{ formatDate(toDate) }}
     </button>
-  </div>
+
+    {{ formatter.format(fromDate) }}
+</div>
