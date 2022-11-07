@@ -24,67 +24,31 @@ export class GraphComponent implements OnInit, AfterViewInit, DoCheck {
   createGraph() {
     const ctx = this.canvas.nativeElement;
 
-    let labels: any[] = [];
-    let datasets: any[] = [];
-
     // if (this.graph_data) {
     const structured = this.structureData();
-    console.log(structured);
-
-
-
-    labels = structured.labels;
-    datasets = structured.datasets;
     // }
 
     this.graph = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: labels,
-        datasets: datasets
-      },
-      // options: {
-      //   parsing: {
-      //     xAxisKey: 'id',
-      //     yAxisKey: 'nested.value'
-      //   }
-      // }
+        labels: structured.labels,
+        datasets: structured.datasets,
+      }
     });
   }
 
   private structureData() {
-    const column_names = [
-      "Date",
-      "Open",
-      "High",
-      "Low"
-    ];
+    var column_names: any[] = [];
+    var data: any[] = [];
 
-    const data = [
-      [
-        "2015-05-28",
-        9.58,
-        10.17,
-        12.96
-      ],
-      [
-        "2015-05-27",
-        9.53,
-        10.13,
-        12.97
-      ],
-      [
-        "2015-05-26",
-        9.526415957480097,
-        10.11017545854056,
-        12.982029225784581
-      ],
-    ];
+    if (this.graph_data) {
+      column_names = this.graph_data.dataset.column_names;
+      data = this.graph_data.dataset.data;
+    }
 
-    // 
-    var columns: any[] = column_names.slice(1);
     var dataset_data: any = [];
     var labels: any = [];
+    var columns: any[] = column_names.slice(1);
 
 
     // structure row data
@@ -140,7 +104,6 @@ export class GraphComponent implements OnInit, AfterViewInit, DoCheck {
 
   ngAfterViewInit(): void {
     this.createGraph();
-    // this.Graph()
   }
 
   ngDoCheck(): void {
@@ -159,6 +122,7 @@ export class GraphComponent implements OnInit, AfterViewInit, DoCheck {
         }
       } catch (error) {
         // ignore
+        console.error('Error:', error);
         update = false;
       }
 
@@ -171,8 +135,10 @@ export class GraphComponent implements OnInit, AfterViewInit, DoCheck {
         this.graph.destroy();
       }
 
-      // this.graph_data = this.dataService.getIndexData();
-      // this.createGraph();
+      this.graph_data = this.dataService.getIndexData();
+      this.createGraph();
+
+      console.log('do check', this.company, this.graph_data);
     }
   }
 

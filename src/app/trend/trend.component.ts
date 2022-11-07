@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { DataService } from '../service/data.service';
 import { DataProvider } from '../utility/data-provider';
 
@@ -68,6 +69,7 @@ export class TrendComponent implements OnInit, DoCheck {
         }
       } catch (error) {
         // ignore
+        console.error('Error:', error);
         update = false;
       }
 
