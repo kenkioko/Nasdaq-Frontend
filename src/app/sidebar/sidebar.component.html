@@ -1,6 +1,6 @@
-<div class="vh-100 min-vh-100 overflow-auto">
-    <div class="">
-        <h2 class="text-capitalize">{{ title }}</h2>
+<div class="vh-100 min-vh-100 overflow-auto p-1 bg-secondary">
+    <div class="m-2 p-1 rounded">
+        <h1 class="display-1 text-primary text-capitalize">{{ title }}</h1>
 
         <div class="mb-3">
             <label for="searchInput" class="form-label visually-hidden">Search</label>
@@ -9,7 +9,7 @@
     </div>
 
     <!-- company listing -->
-    <div class="">
+    <div class="m-2 p-1 rounded">
         <ul class="list-group list-group-flush ">
             <span *ngFor="let index of listing">
                 <li 

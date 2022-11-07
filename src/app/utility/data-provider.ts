@@ -69,6 +69,13 @@ export class DataProvider {
             url.searchParams.set('end_date', filter.start_date)
         }
 
+        // filter by limit
+        var limit: number = 50;
+        if (filter.hasOwnProperty('limit')) {
+            limit = filter.limit
+        }
+        url.searchParams.set('limit', limit.toString());
+
         return this.getData(url);
     }
 
