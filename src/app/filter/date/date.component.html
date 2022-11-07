@@ -1,34 +1,32 @@
-<div class="dp-hidden position-absolute">
-    <div class="input-group">
-        <input
-            class="form-control"
-            tabindex="-1"
-            
-            ngbDatepicker
-            outsideDays="hidden"
-            #datepicker="ngbDatepicker"
+<div class="position-absolute">
+    <input
+        class="form-control visually-hidden"
+        tabindex="-1"
+        
+        ngbDatepicker
+        outsideDays="hidden"
+        #datepicker="ngbDatepicker"
 
-            [dayTemplate]="datepickerTemplate"
-            [autoClose]="'outside'"
-            [displayMonths]="2"
-            [startDate]="fromDate!"
-            
-            (dateSelect)="onDateSelection($event)"
-        />
+        [dayTemplate]="datepickerTemplate"
+        [autoClose]="'outside'"
+        [displayMonths]="2"
+        [startDate]="fromDate!"
+        
+        (dateSelect)="onDateSelection($event)"
+    />
 
-        <ng-template #datepickerTemplate let-date let-focused="focused">
-            <span
-                class="custom-day"
-                [class.focused]="focused"
-                [class.range]="isRange(date)"
-                [class.faded]="isHovered(date) || isInside(date)"
-                (mouseenter)="hoveredDate = date"
-                (mouseleave)="hoveredDate = null"
-            >
-                {{ date.day }}
-            </span>
-        </ng-template>
-    </div>
+    <ng-template #datepickerTemplate let-date let-focused="focused">
+        <span
+            class="custom-day"
+            [class.focused]="focused"
+            [class.range]="isRange(date)"
+            [class.faded]="isHovered(date) || isInside(date)"
+            (mouseenter)="hoveredDate = date"
+            (mouseleave)="hoveredDate = null"
+        >
+            {{ date.day }}
+        </span>
+    </ng-template>
 </div>
 
 <div class="input-group visually-hidden">

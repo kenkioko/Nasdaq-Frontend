@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,37 +13,36 @@ export class DateComponent implements OnInit {
   @Input() company!: any;
   @Input() fromDate!: NgbDate | null;
   @Input() toDate!: NgbDate | null;
+  @Output() filter = new EventEmitter();
 
   hoveredDate: NgbDate | null = null;
 
   constructor(public formatter: NgbDateParserFormatter) { }
 
   formatDate(date: NgbDate | null) {
-    // var date_f = Date.parse(this.formatter.format(date));
-    // console.log(date_f);
+    var date_s: any = String(date);
+    if (date instanceof NgbDate) {
+      var months = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      ];
 
-    // console.log(date, this.fromDate);
-    
+      date_s = `${date.day} ${months[date.month]}, ${date.year}`;
+    }
 
-    var months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ];
+    // console.log(date, date_s, this.formatter.format(date));
+    // console.log(this.formatter.format(date));
 
-    // var d = date_f.getDate();
-    // var m = date_f.getMonth();
-    // var y = date_f.getFullYear();
-
-    // const date_s =  `${d} ${months[m]}, ${y}`;
-    // console.log(date_s, date_f);
-
-
-    return date;
+    return date_s;
   }
 
   private filterByDate() {
-
-    // 
+    if ((this.fromDate instanceof NgbDate) && (this.toDate instanceof NgbDate)) {
+      this.filter.emit({
+        start_date: this.formatter.format(this.fromDate),
+        end_date: this.formatter.format(this.toDate),
+      });
+    }
   }
 
   onDateSelection(date: NgbDate) {
@@ -55,6 +54,8 @@ export class DateComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
+
+    this.filterByDate();
   }
 
   isHovered(date: NgbDate) {

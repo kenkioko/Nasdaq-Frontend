@@ -24,8 +24,6 @@ export class TrendComponent implements OnInit, DoCheck {
   }
 
   getTrend(filter: any = {}) {
-    console.log('get trend', filter)
-    
     // First get the trend code from the current route.
     const routeParams = this.route.snapshot.paramMap;
     const trendCode = routeParams.get('trend_code');    

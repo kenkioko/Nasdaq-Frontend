@@ -16,6 +16,8 @@
                 [company]="company"
                 [fromDate]="getDateRange().from"
                 [toDate]="getDateRange().to"
+
+                (filter)="getTrend($event)"
             ></app-filter-date>
         </div>
     </div>
@@ -25,7 +27,7 @@
         <app-filter-dataset 
             [company]="company"
             [options]="getColumnNames()"
-            
+
             (filter)="getTrend($event)"
         ></app-filter-dataset>
         
