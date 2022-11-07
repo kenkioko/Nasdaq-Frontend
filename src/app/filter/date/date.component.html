@@ -1,14 +1,64 @@
-<div class="input-group">
-    <span class="input-group-text" id="calenderIcon" (click)="d.toggle()">
-        <i class="bi bi-calendar3"></i>
-    </span>
-    
-    <input 
-        type="text" 
-        class="form-control" 
-        placeholder="From Date - To Date" 
-        aria-label="filterDate"
-        aria-describedby="calenderIcon"
-        ngbDatepicker #d="ngbDatepicker"
-    >
+<div class="dp-hidden position-absolute">
+    <div class="input-group">
+        <input
+            class="form-control"
+            tabindex="-1"
+            
+            ngbDatepicker
+            outsideDays="hidden"
+            #datepicker="ngbDatepicker"
+
+            [dayTemplate]="datepickerTemplate"
+            [autoClose]="'outside'"
+            [displayMonths]="2"
+            [startDate]="fromDate!"
+            
+            (dateSelect)="onDateSelection($event)"
+        />
+
+        <ng-template #datepickerTemplate let-date let-focused="focused">
+            <span
+                class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null"
+            >
+                {{ date.day }}
+            </span>
+        </ng-template>
+    </div>
 </div>
+
+<div class="input-group visually-hidden">
+    <input
+        #dpFromDate
+        
+        class="form-control"
+        name="dpFromDate"
+        tabindex="-1"
+    />
+
+    <input
+        #dpToDate
+        
+        class="form-control"
+        name="dpToDate"
+        tabindex="-1"
+    />
+</div>
+
+<div class="btn-group btn-group-sm" role="group" aria-label="filter date">
+    <button 
+        type="button" 
+        class="btn btn-outline-primary text-center mx-2 rounded" 
+        (click)="datepicker.toggle()"
+    >
+        <i class="bi bi-calendar3 fs-3"></i>
+    </button>
+
+    <button type="button" class="btn btn-primary rounded px-5" (click)="datepicker.toggle()">
+        {{ formatter.format(fromDate) }} - {{ formatter.format(toDate) }}
+    </button>
+  </div>
