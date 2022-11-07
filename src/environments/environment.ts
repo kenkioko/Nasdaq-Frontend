@@ -23,7 +23,7 @@ export const environment = {
   api: {
     base_url: "https://data.nasdaq.com",
     endpoint: "/api/v3/datasets",
-    key: "6soAgnD15ThwLQ3SomsZ",
+    key: "",
   }
 };
 
