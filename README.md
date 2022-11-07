@@ -2,6 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
+Set environment variables in the files `src/environments/` to increase rate liminting to the data server.
+```
+// the env var for accesing the nasdaq api
+api: {
+    // api base url 
+    base_url: "https://data.nasdaq.com",
+
+    // the endpoints for the data
+    endpoint: "/api/v3/datasets",
+
+    // the api key on account settings
+    key: "",
+}
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
