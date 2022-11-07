@@ -57,7 +57,10 @@ export class DataProvider {
     async companyData(dataset_code: string, filter: any = {}) {
         const endpoint = `${environment.api.endpoint}/${this.database_code}/${dataset_code}.json`;
         const url = new URL(endpoint, environment.api.base_url);
-        url.searchParams.set('api_key', environment.api.key);
+
+        if (environment.api.key) {
+            url.searchParams.set('api_key', environment.api.key);
+        }
 
         const params = [
             { key: 'start_date', default: null },
