@@ -1,0 +1,19 @@
+<div ngbDropdown class="d-inline-block">
+    <button type="button" class="btn btn-primary" id="priceDropdown" ngbDropdownToggle>
+        Select Dataset To View
+    </button>
+
+    <div ngbDropdownMenu aria-labelledby="priceDropdown">
+        <span *ngFor="let option of options">
+            <button ngbDropdownItem (click)="onChangeDataset($event, option)">
+                {{ option }}
+            </button>
+        </span>
+
+        <span *ngIf="options.length == 0">
+            <button ngbDropdownItem>
+                No dataset available
+            </button>
+        </span>
+    </div>
+</div>

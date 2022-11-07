@@ -12,20 +12,20 @@
         
         <div class="'ms-auto">
             <!-- filter by date range -->
-            <app-date 
+            <app-filter-date 
                 [company]="company"
                 [fromDate]="getDateRange().from"
                 [toDate]="getDateRange().to"
-            ></app-date>
+            ></app-filter-date>
         </div>
     </div>
 
     <div class="p-5">
-        <!-- toogle closing price -->
-        <app-price 
+        <!-- toogle dataset to view -->
+        <app-filter-dataset 
             [company]="company"
             [options]="getColumnNames()"
-        ></app-price>
+        ></app-filter-dataset>
         
         <!-- company graph trend -->
         <app-graph 

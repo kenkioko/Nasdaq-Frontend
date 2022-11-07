@@ -11,8 +11,8 @@ import { AppComponent } from './app.component';
 import { GraphComponent } from './graph/graph.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TrendComponent } from './trend/trend.component';
+import { DatasetComponent } from './filter/dataset/dataset.component';
 import { DateComponent } from './filter/date/date.component';
-import { PriceComponent } from './filter/price/price.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { PriceComponent } from './filter/price/price.component';
     SidebarComponent,
     GraphComponent,
     DateComponent,
-    PriceComponent,
-    TrendComponent
+    TrendComponent,
+    DatasetComponent
   ],
   imports: [
     BrowserModule,

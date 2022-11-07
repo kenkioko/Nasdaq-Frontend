@@ -5,7 +5,7 @@ import { NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { DataProvider } from 'src/app/utility/data-provider';
 
 @Component({
-  selector: 'app-date',
+  selector: 'app-filter-date',
   templateUrl: './date.component.html',
   styleUrls: ['./date.component.scss']
 })
