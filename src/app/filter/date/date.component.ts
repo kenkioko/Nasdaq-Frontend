@@ -22,7 +22,7 @@ export class DateComponent implements OnInit {
     // var date_f = Date.parse(this.formatter.format(date));
     // console.log(date_f);
 
-    console.log(date, this.fromDate);
+    // console.log(date, this.fromDate);
     
 
     var months = [

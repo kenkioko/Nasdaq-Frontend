@@ -4,8 +4,14 @@
     </button>
 
     <div ngbDropdownMenu aria-labelledby="priceDropdown">
-        <span *ngFor="let option of options">
-            <button ngbDropdownItem (click)="onChangeDataset($event, option)">
+        <span *ngIf="options.length > 0">
+            <button ngbDropdownItem (click)="onChangeDataset($event)">
+                View all datasets
+            </button>
+        </span>
+
+        <span *ngFor="let option of options; let index=index;">
+            <button ngbDropdownItem (click)="onChangeDataset($event, option, index)">
                 {{ option }}
             </button>
         </span>

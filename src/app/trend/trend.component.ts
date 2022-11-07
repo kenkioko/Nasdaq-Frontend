@@ -23,7 +23,9 @@ export class TrendComponent implements OnInit, DoCheck {
     this.dataProvider = new DataProvider;
   }
 
-  getTrend() {
+  getTrend(filter: any = {}) {
+    console.log('get trend', filter)
+    
     // First get the trend code from the current route.
     const routeParams = this.route.snapshot.paramMap;
     const trendCode = routeParams.get('trend_code');    
@@ -41,7 +43,7 @@ export class TrendComponent implements OnInit, DoCheck {
     this.company_data = this.dataService.getIndexData();
 
     if (this.company && this.company.hasOwnProperty('code')) {
-      this.dataProvider.companyData(this.company.code)
+      this.dataProvider.companyData(this.company.code, filter)
         .then(result => {
           this.dataService.setIndexData(result);
           this.company_data = this.dataService.getIndexData();
@@ -67,8 +69,8 @@ export class TrendComponent implements OnInit, DoCheck {
     if (this.company_data) {
       // start date
       if (this.company_data.hasOwnProperty('dataset')) {
-        range['from'] = this.company_data.dataset.oldest_available_date;
-        range['to'] = this.company_data.dataset.newest_available_date;
+        range['from'] = this.company_data.dataset.end_date;
+        range['to'] = this.company_data.dataset.start_date;
       }
     }    
 

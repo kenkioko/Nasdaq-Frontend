@@ -33,7 +33,7 @@ export class DataProvider {
         });
     }
 
-    async companyList(dataset_code?: string|null, max?: number) {
+    async companyList(dataset_code?: string | null, max?: number) {
         let listing: any = await this.companyCSV();
         listing = listing.hasOwnProperty('data')
             ? listing['data']
@@ -59,22 +59,27 @@ export class DataProvider {
         const url = new URL(endpoint, environment.api.base_url);
         url.searchParams.set('api_key', environment.api.key);
 
-        // filter by start date
-        if (filter.hasOwnProperty('start_date')) {
-            url.searchParams.set('start_date', filter.start_date)
+        const params = [
+            { key: 'start_date', default: null },
+            { key: 'end_date', default: null },
+            { key: 'column_index', default: null },
+            { key: 'limit', default: '50' }
+        ];
+
+        const filter_data = (col: any, val: string | null) => {
+            if (val && filter.hasOwnProperty(col.key)) {
+                url.searchParams.set(col.key, val);
+            }
+
+            // set default
+            if (!val && col.default) {
+                url.searchParams.set(col.key, col.default);
+            }
         }
 
-        // filter by end date
-        if (filter.hasOwnProperty('end_date')) {
-            url.searchParams.set('end_date', filter.start_date)
-        }
-
-        // filter by limit
-        var limit: number = 50;
-        if (filter.hasOwnProperty('limit')) {
-            limit = filter.limit
-        }
-        url.searchParams.set('limit', limit.toString());
+        params.forEach(col => {
+            filter_data(col, filter[col.key]);
+        });
 
         return this.getData(url);
     }

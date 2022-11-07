@@ -25,6 +25,8 @@
         <app-filter-dataset 
             [company]="company"
             [options]="getColumnNames()"
+            
+            (filter)="getTrend($event)"
         ></app-filter-dataset>
         
         <!-- company graph trend -->
